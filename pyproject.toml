@@ -1,0 +1,7 @@
+[tool.pytest.ini_options]
+testpaths = [
+    "tests/test_evidence_claim_adjudicator.py",
+]
+markers = [
+    "integration: tests requiring GenLayer Studio (run with gltest)",
+]
