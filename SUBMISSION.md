@@ -33,7 +33,8 @@ The contract uses `gl.vm.run_nondet_unsafe()` with a custom validator function. 
 Insurance claims, dispute resolution, content verification, freelancer assessment - any scenario where a claim needs to be evaluated against evidence with AI-powered judgment.
 
 ## Live Deployment
-[To be deployed on Bradbury Testnet]
+Deployed on GenLayer studionet (chain `61999`):
+[`0xD276B031f1518821c4A9e2B6cDb0030016DDf77f`](https://explorer-studio.genlayer.com/address/0xD276B031f1518821c4A9e2B6cDb0030016DDf77f)
 
 ## Source Code
 See `contracts/evidence_claim_adjudicator.py`

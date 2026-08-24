@@ -204,7 +204,6 @@ Respond ONLY with valid JSON:
 def _build_appeal_review_prompt(
     claim: dict,
     original_verdict: str,
-    original_reasoning: str,
     appeal_reason: str,
     evidence_list: list,
 ) -> str:
@@ -223,6 +222,10 @@ You are an appellate evidence adjudicator reviewing a previous verdict.
 Your task is to determine if the appeal has merit based on the original claim,
 the SUBMITTED EVIDENCE, and the appellant's arguments.
 
+IMPORTANT: You are judging the APPEAL against the evidence DIRECTLY. Do not rely
+on any previously stored explanation — decide only from the claim, the evidence
+and the appeal argument below.
+
 ORIGINAL CLAIM:
 Title: {claim['title']}
 Description: {claim['description']}
@@ -233,12 +236,11 @@ SUBMITTED EVIDENCE:
 {evidence_text}
 
 ORIGINAL VERDICT: {original_verdict}
-ORIGINAL REASONING: {original_reasoning}
 
 APPEAL ARGUMENT: {appeal_reason}
 
 TASK:
-1. Review the original verdict and reasoning against the SUBMITTED EVIDENCE above.
+1. Review the original verdict against the SUBMITTED EVIDENCE above.
 2. Evaluate if the appeal argument introduces valid critique grounded in that evidence.
 3. An appeal can only succeed if it identifies a FACTUAL DIFFERENCE based on the
    submitted evidence — not just a disagreement with the conclusion.
@@ -596,7 +598,7 @@ class EvidenceClaimAdjudicator(gl.Contract):
 
         def review_fn() -> dict:
             prompt = _build_appeal_review_prompt(
-                claim_dict, c.verdict, c.reasoning, appeal_reason, evidence_list
+                claim_dict, c.verdict, appeal_reason, evidence_list
             )
             raw_res = _exec_prompt_json(prompt)
 

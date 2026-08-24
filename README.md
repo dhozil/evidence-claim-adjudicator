@@ -9,7 +9,7 @@
 ![Status](https://img.shields.io/badge/status-live%20on%20studionet-2ea44f)
 ![Tests](https://img.shields.io/badge/tests-8%20passed-2ea44f)
 
-[Live Contract](https://explorer-studio.genlayer.com/address/0xf34111c116AD18903166d8cD9516f02a7B4363Ad) ·
+[Live Contract](https://explorer-studio.genlayer.com/address/0xD276B031f1518821c4A9e2B6cDb0030016DDf77f) ·
 [GenLayer Docs](https://docs.genlayer.com)
 
 </div>
@@ -24,8 +24,8 @@ Many decisions depend on *evidence*: insurance claims, payment disputes, authent
 
 | | |
 |---|---|
-| **Contract** | [EvidenceClaimAdjudicator](https://explorer-studio.genlayer.com/address/0xf34111c116AD18903166d8cD9516f02a7B4363Ad) |
-| **Address** | `0xf34111c116AD18903166d8cD9516f02a7B4363Ad` |
+| **Contract** | [EvidenceClaimAdjudicator](https://explorer-studio.genlayer.com/address/0xD276B031f1518821c4A9e2B6cDb0030016DDf77f) |
+| **Address** | `0xD276B031f1518821c4A9e2B6cDb0030016DDf77f` |
 | **Network** | GenLayer studionet (chain `61999`) |
 | **Status** | ✅ deployed + audited on-chain |
 
@@ -69,6 +69,7 @@ finalize_claim ──► withdraw_deposit
 ## Security Model
 
 - Evidence content binding `sha256(snapshot) == hash` at submission
+- **Appeals are decided on evidence, not stored text**: the stored reasoning is kept for transparency but is **not** fed into the appeal review — appeal consensus judges the claim, the submitted evidence and the appeal argument directly
 - Grounded reasoning: adjudication/appeal reasoning must reference submitted evidence anchors (URL or evidence id) - validated by consensus
 - Strict status transitions - no double adjudication
 - Bounded lifecycle - unreviewed appeals and inconclusive cases time out; no stranded deposits/bonds
